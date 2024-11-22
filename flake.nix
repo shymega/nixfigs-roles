@@ -68,6 +68,6 @@
     ];
     checkRole = role:
       builtins.elem role self.roles;
-    checkRoles = roles: builtins.all (role: self.checkRole role) roles;
+    checkRoles = roles: builtins.any (role: self.checkRole role) roles;
   };
 }
