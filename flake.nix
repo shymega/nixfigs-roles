@@ -66,8 +66,10 @@
       "workstation"
       "wsl"
     ];
-    checkRole = role:
-      builtins.elem role self.roles;
-    checkRoles = roles: builtins.any (role: self.checkRole role) roles;
+    utils = {
+      checkRole = role:
+        builtins.elem role self.roles;
+      checkRoles = roles: builtins.any (role: self.utils.checkRole role) roles;
+    };
   };
 }
