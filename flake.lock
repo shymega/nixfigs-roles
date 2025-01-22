@@ -174,11 +174,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1737504410,
+        "lastModified": 1737504779,
         "narHash": "sha256-/CGdYOSXupzaAqLDbwC/Q2W/tx95/P3rLaiLbU8w68U=",
         "owner": "shymega",
         "repo": "nixfigs-helpers",
-        "rev": "0f47fa2f2bd6e05c3a9a332e629cb5c19515347d",
+        "rev": "b077e270456f840b92233efadd88982b8b53c6d5",
         "type": "github"
       },
       "original": {
