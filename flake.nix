@@ -50,13 +50,25 @@
         import inputs.nixfigs-helpers.helpers.devShells { inherit pkgs self system; }
       );
       roles = [
-        "personal"
-        "work"
-        "shyNET"
         "RNET"
-        "gaming"
-        "minimalist"
+        "clockwork_tests"
+        "container"
+        "darwin_arm64"
+        "darwin_x86"
+        "deck"
         "embedded"
+        "gaming"
+        "gpd_wm2"
+        "minimal"
+        "personal"
+        "proxmox_lxc"
+        "proxmox_vm"
+        "raspberrypi_4"
+        "raspberrypi_z2w"
+        "raspberrypi_zw"
+        "shyNET"
+        "work"
+        "wsl"
       ];
     };
 }
