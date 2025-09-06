@@ -2,15 +2,21 @@
 #
 # SPDX-License-Identifier: GPL-3.0-only
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
   inputs.nixfigs-helpers.url = "github:shymega/nixfigs-helpers";
 
   outputs = {self, ...} @ inputs: let
     genPkgs = system: import inputs.nixpkgs {inherit system;};
 
     systems = [
-      "x86_64-linux"
+      "aarch64-darwin"
       "aarch64-linux"
+      "armv6l-linux"
+      "armv7l-linux"
+      "i686-linux"
+      "riscv64-linux"
+      "x86_64-darwin"
+      "x86_64-linux"
     ];
 
     treeFmtEachSystem = f: inputs.nixpkgs.lib.genAttrs systems (system: f inputs.nixpkgs.legacyPackages.${system});
@@ -44,30 +50,41 @@
         import inputs.nixfigs-helpers.helpers.devShells {inherit pkgs self system;}
     );
     roles = [
-      "rnet"
-      "clockwork_tests"
+      "clockworkpi-dev"
+      "clockworkpi-prod"
       "container"
-      "darwin_arm64"
-      "darwin_x86"
+      "darwin"
+      "darwin-arm64"
+      "darwin-x86"
       "embedded"
       "gaming"
-      "gh-runner"
-      "gpd_wm2"
+      "github-runner"
+      "gitlab-runner"
+      "gpd-duo"
+      "gpd-wm2"
+      "jovian"
       "minimal"
+      "mobile-nixos"
+      "nix-on-droid"
       "personal"
-      "proxmox_lxc"
-      "proxmox_vm"
-      "raspberrypi_4"
-      "raspberrypi_z2w"
-      "raspberrypi_zw"
+      "proxmox-lxc"
+      "proxmox-vm"
+      "raspberrypi-arm64"
+      "raspberrypi-zero"
+      "rnet"
       "shynet"
-      "steamdeck"
+      "steam-deck"
       "work"
       "workstation"
       "wsl"
     ];
-    checkRole = role:
-      builtins.elem role self.roles;
-    checkRoles = roles: builtins.all (role: self.checkRole role) roles;
+    utils = rec {
+      inherit (self) roles;
+      checkRole = role: (builtins.elem role roles);
+      checkRoleIn = targetRole: hostRoles:
+        (builtins.elem targetRole roles) && (builtins.elem targetRole hostRoles);
+      checkRoles = targetRoles: hostRoles: (builtins.any checkRole targetRoles) && (builtins.any checkRole hostRoles);
+      checkAllRoles = targetRoles: hostRoles: (builtins.all checkRole targetRoles) && (builtins.all checkRole hostRoles);
+    };
   };
 }
