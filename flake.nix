@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-only
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+ inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
   inputs.nixfigs-helpers.url = "github:shymega/nixfigs-helpers";
 
   outputs = {self, ...} @ inputs: let
