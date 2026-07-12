@@ -61,7 +61,6 @@
       "gitlab-runner"
       "gpd-duo"
       "gpd-wm2"
-      "jovian"
       "minimal"
       "mobile-nixos"
       "nix-on-droid"
