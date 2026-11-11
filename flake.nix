@@ -2,7 +2,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 {
-  inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
+  inputs.nixfigs-pkgs.url = "github:shymega/nixfigs-pkgs";
+  inputs.nixpkgs.follows = "nixfigs-pkgs/nixpkgs";
   inputs.nixfigs-helpers = {
     url = "github:shymega/nixfigs-helpers";
     inputs.nixpkgs.follows = "nixpkgs";
